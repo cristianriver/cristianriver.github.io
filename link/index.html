@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <title>Dev</title>
+
+    <link rel="stylesheet" href="/link/style.css">
+    <link rel="stylesheet" href="/animation.css">
+    <link rel="stylesheet" href="/link/responsive.css">
+
+</head>
+<body>
+    <section>
+        <header>
+            <img src="/link/imagemperfil.jpeg" alt="foto de perfil">
+            <h1>@Cristtian_xx</h1>
+            <p>Front End🤞</p>
+        </header>
+        <div>
+            <img src="/link/clouds.png" class="clouds"  alt="">
+            <img src="/link/pipe.png" class="pipe" id="pipe" alt="">
+            <img src="/link/mario.gif" class="mario" id="mario" alt="">
+            <img src="/link/chão.jpeg" class="chao" alt="">
+        </div>
+        <nav>
+            <a href="https://wa.me/5537998763923">WhatsApp</a>
+        </nav>
+    </section>
+
+
+    <style>
+        
+@import url('https://fonts.googleapis.com/css2?family=Honk&display=swap');
+@import url('responsive.css');
+
+
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+text-decoration: none;
+}
+img {
+max-width: 100%;
+}
+:root {
+--backgroundFundo: linear-gradient(#87ceeb, #e0f6ff);
+--borderCard: white;
+
+}
+body {
+background: linear-gradient(#333, #337);
+
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+position: relative;
+
+}
+
+section {
+background: var(--backgroundFundo);
+
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+text-align: center;
+
+position: relative;
+height: 600px;
+width: 400px;
+padding: 50px;
+gap: 20px;
+
+
+overflow: hidden;
+
+}
+
+.chao{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+
+    height: 100px;
+    width: 100%;
+}
+
+header img {
+height: 80px;
+width: 80px;
+border-radius: 50%;
+}
+
+header h1 {
+font-family: "Honk";
+font-size: 2rem;
+
+}
+header p {
+color: tomato;
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 600;
+letter-spacing: 5px;
+
+
+}
+nav {
+display: flex;
+flex-direction: column;
+width: 100%;
+}
+nav a{
+background-color: green;
+color: white;
+
+font-family: Arial, Helvetica, sans-serif;
+font-weight: 600;
+
+padding: 15px 0;
+box-shadow: 10px 10px tomato;
+
+}
+
+
+.clouds {
+    position: absolute;
+    top: 50px;
+    width: 200px;
+    
+    animation: clouds-animation 15s infinite linear;
+}
+@keyframes clouds-animation {
+    from{right: -210px;} to{right: 100%;}
+}
+.pipe {
+    position: absolute;
+    bottom: 100px;
+    height: 20px;
+
+    animation: pipe-animation 4s infinite linear;
+}
+@keyframes pipe-animation {
+    from{right: -30px;} to{right: 100%;}
+}
+
+.mario {
+    left: 150px;
+    position: absolute;
+    bottom: 100px;
+    height: 40px;
+}
+
+    </style>
+
+<style>
+    
+@media(max-width: 500px){
+   
+    section {
+        margin-top: 0;
+        width: 100%;
+        height: 100%;
+    }
+    .chao {
+        height: 150px;
+    }
+    .clouds {
+        top: 120px;
+    }
+    .pipe {
+        bottom: 150px;
+
+    }
+    .mario {
+        bottom: 150px;
+    }
+}
+</style>
+
+ <script>
+ const mario = document.getElementById('mario');
+const pipe = document.getElementById('pipe');
+console.log(pipe)
+
+const alturaDoPulo = 30;
+const proximidade = 5; 
+const duracaoDoPulo = 400; //velocidade do pulo
+
+function pular() {
+    mario.style.transition = 'transform 0.3s ease-in-out'; //animação de pulo mais suave
+    mario.style.transform = `translateY(-${alturaDoPulo}px)`;
+
+    setTimeout(() => {
+        mario.style.transition = 'none';
+        mario.style.transform = 'translateY(0)';
+    }, duracaoDoPulo);
+}
+
+function verificarProximidade(){
+    const marioRect = mario.getBoundingClientRect();
+    const pipeRect = pipe.getBoundingClientRect();
+
+    if(pipeRect.left - marioRect.right < proximidade) {
+        pular();
+    }
+
+    requestAnimationFrame(verificarProximidade);
+}
+verificarProximidade();
+
+
+   
+ </script>
+    <script src="/script.js"></script>
+</body>
+</html>
